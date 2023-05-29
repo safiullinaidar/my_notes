@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>MyNotes</title>
+    <title>My Notes</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
@@ -11,6 +11,35 @@
   </head>
 
   <body>
-    <%= yield %>
+    <div class="navbar sticky-top navbar-expand navbar-light bg-light">
+      <div class="container flex-row flex-nowrap">
+        <%= link_to "My notes", root_path, class: 'navbar-brand' %>
+
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+          <div class="navbar-nav flex-wrap">
+            <% if user_signed_in? %>
+              <li class="nav-item"><%= link_to "Profile", current_user, class: "nav-link" %></li>
+              <li class="nav-item"><%= button_to "Log out", destroy_user_session_path, method: :delete, class: "nav-link border-0
+          bg-transparent" %></li>
+            <% else %>
+              <li class="nav-item"><%= link_to "Log in", new_user_session_path, class: "nav-link" %></li>
+              <li class="nav-item"><%= link_to "Sign up", new_user_registration_path, class: "nav-link" %></li>
+            <% end %>
+          </div>
+        </div>
+
+        </div>
+    </div>
+
+    <div class="container">
+      <%= yield %>
+    </div>
+
+    <footer class="fixed-bottom py-3 text-center bg-light">
+      <div class="container">
+        <span class="text-muted">&copy; <%= "My notes" %> 2023</span>
+      </div>
+    </footer>
+
   </body>
 </html>
