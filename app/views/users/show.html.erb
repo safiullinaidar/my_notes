@@ -1,0 +1,22 @@
+<div class="text-center">
+  <h1><%= @user.name %></h1>
+
+  <% if @user == current_user %>
+    <p class="buffer-top">
+    <%= link_to "Update user's profile", edit_user_path(@user), class: 'btn btn-outline-primary' %>
+    </p>
+  <% end %>
+
+  <div class="row">
+    <div class="col-md-12">
+      <% if @user.notes.any? %>
+        <h3>notes wrote:</h3>
+        <div class="row">
+          <%= render partial: 'notes/note', collection: @user.notes %>
+        </div>
+      <% else %>
+        <p class="buffer-top">has written no notes </p>
+      <% end %>
+    </div>
+  </div>
+</div>
