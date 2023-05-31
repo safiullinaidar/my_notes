@@ -10,7 +10,7 @@
   <div class="row">
     <div class="col-md-12">
       <% if @user.notes.any? %>
-        <h3>notes wrote:</h3>
+        <h3>wrote notes:</h3>
         <div class="row">
           <%= render partial: 'notes/note', collection: @user.notes %>
         </div>
