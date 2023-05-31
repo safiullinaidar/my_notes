@@ -2,8 +2,7 @@
 
 <h1 class="my-4 text-center"><%= pluralize(Note.count, "Note") %></h1>
 
-<div class="row">
+<div class="w-100 d-flex flex-column align-items-center">
   <%= render partial: 'notes/note' %>
+  <%= will_paginate @notes %>
 </div>
-
-<%= will_paginate @notes %>

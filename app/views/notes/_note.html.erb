@@ -1,23 +1,23 @@
-<table class="table table-bordered">
+<table class="table table-bordered tables-fixed-width">
   <thead>
     <tr>
-      <th style="width: 100px;">Line number (#)</th>
+      <th style="width: 10%">Line number (#)</th>
       <th>Note text</th>
-      <th style="width: 150px;">Author name</th>
-      <th style="width: 100px;">Create date</th>
-      <th style="width: 50px;">Delete button</th>
+      <th style="width: 25%">Author name</th>
+      <th style="width: 15%">Create date</th>
+      <th style="width: 10%">Delete button</th>
     </tr>
   </thead>
   <tbody>
     <% @notes.each do |note| %>
       <tr id="note-<%= note.id %>">
-        <td style="width: 100px;"><%= note.id %></td>
+        <td style="width: 10%"><%= note.id %></td>
         <td><%= note.body %></td>
-        <td style="width: 150px;" data-toggle="tooltip" title="<%= note.user.name %>"><%= note.user.name.split(' ').first %></td>
-        <td style="width: 100px;" data-toggle="tooltip" title="<%= note.created_at.to_formatted_s(:long) %>">
+        <td style="width: 25%" data-toggle="tooltip" title="<%= note.user.name %>"><%= note.user.name.split(' ').first %></td>
+        <td style="width: 15%" data-toggle="tooltip" title="<%= note.created_at.to_formatted_s(:long) %>">
           <%= note.created_at.to_date %></td>
-        <td style="width: 50px;">
-          <% if user_signed_in? %>
+        <% if user_signed_in? %>
+          <td style="width: 10%">
             <%= button_to note_path(note.id),
               class: 'delete-note', 
               method: :delete,
@@ -26,10 +26,11 @@
               title: 'Delete', 'data-note-id': note.id do %>
               <i class="bi bi-trash"></i>
             <% end %>
-          <% else %>
-            
-          <% end %>
-        </td>
+          </td>
+        <% else %>
+          <td style="width: 10%" data-toggle="tooltip" title="You can delete only your own note">
+            <i class="bi bi-exclamation-circle"></i></td>
+        <% end %>
       </tr>
     <% end %>
     
