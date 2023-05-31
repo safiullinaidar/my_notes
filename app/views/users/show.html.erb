@@ -10,10 +10,7 @@
   <div class="row">
     <div class="col-md-12">
       <% if @user.notes.any? %>
-        <h3>wrote notes:</h3>
-        <div class="row">
-          <%= render partial: 'notes/note', collection: @user.notes %>
-        </div>
+        <h3>wrote <%= pluralize(Note.count, "note") %></h3>
       <% else %>
         <p class="buffer-top">has written no notes </p>
       <% end %>

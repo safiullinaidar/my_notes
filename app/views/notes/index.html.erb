@@ -2,37 +2,8 @@
 
 <h1 class="my-4 text-center"><%= pluralize(Note.count, "Note") %></h1>
 
-<table class="table table-bordered">
-  <thead>
-    <tr>
-      <th>Line number (#)</th>
-      <th>Note text</th>
-      <th style="width: 150px;">Author name</th>
-      <th style="width: 200px;">Create date</th>
-      <th style="width: 50px;">Delete button</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @notes.each do |note| %>
-      <tr id="note-<%= note.id %>">
-        <td><%= note.id %></td>
-        <td><%= note.body %></td>
-        <td style="width: 150px;" data-toggle="tooltip" title="<%= note.user.name %>"><%= note.user.name.split(' ').first %></td>
-        <td style="width: 200px;" data-toggle="tooltip" title="<%= note.created_at.to_formatted_s(:long) %>">
-          <%= note.created_at.to_date %></td>
-        <td style="width: 50px;">
-          <%= button_to note_path(note.id),
-            class: 'delete-note', 
-            method: :delete,
-            form: { data: { turbo_confirm: "Are you sure?" } },
-            data: { toggle: 'tooltip', placement: 'top' }, 
-            title: 'Delete', 'data-note-id': note.id do %>
-            <i class="bi bi-trash"></i>
-          <% end %>
-        </td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+<div class="row">
+  <%= render partial: 'notes/note' %>
+</div>
 
-<%= link_to "New note", new_note_path %>
+<%= will_paginate @notes %>

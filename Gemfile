@@ -19,6 +19,7 @@ gem 'devise'
 gem 'bootstrap', '~> 5.0.0'
 gem 'hotwire-rails'
 gem 'kaminari', '~> 1.2.1'
+gem 'will_paginate', '~> 4.0'
 
 group :development, :test do
   gem "debug", platforms: %i[ mri mingw x64_mingw ]
